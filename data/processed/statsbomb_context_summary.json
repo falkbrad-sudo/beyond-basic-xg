@@ -1,0 +1,47 @@
+{
+  "fit_diagnostics": {
+    "n_shots": 3490,
+    "n_goals": 299,
+    "n_dropped_missing": 0,
+    "feature_cols": [
+      "distance_to_goal",
+      "angle_to_goal",
+      "defenders_in_cone",
+      "goalkeeper_distance"
+    ],
+    "evaluation": "train/test split",
+    "n_train": 2792,
+    "n_test": 698,
+    "scaled": true,
+    "coefficients": {
+      "distance_to_goal": -0.448842,
+      "angle_to_goal": 0.424086,
+      "defenders_in_cone": -0.345728,
+      "goalkeeper_distance": 0.346548
+    },
+    "intercept": -2.755041127838838,
+    "test_auc": 0.7460553814002089,
+    "test_log_loss": 0.265229579912133
+  },
+  "comparison": {
+    "n_shots": 3490,
+    "prediction_correlation": 0.8246337404337147,
+    "spearman_correlation": 0.8210581171836142,
+    "mean_abs_difference": 0.02785133364328856,
+    "max_abs_difference": 0.6402995423095518,
+    "mean_basic_xg": 0.0848394722105627,
+    "mean_enhanced_xg": 0.08424815820916721,
+    "n_goals": 299,
+    "observed_goal_rate": 0.08567335243553009,
+    "basic_log_loss": 0.26600354470709575,
+    "enhanced_log_loss": 0.2554390167661673,
+    "basic_auc": 0.7215008976961752,
+    "enhanced_auc": 0.7552606672822497
+  },
+  "power_reference": {
+    "feature": "goalkeeper_distance",
+    "se_reference": 0.04748429584025541,
+    "n_reference": 3490,
+    "goal_rate": 0.08567335243553009
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "basic_fit_diagnostics": {
+    "n_shots": 66,
+    "n_goals": 9,
+    "n_dropped_missing": 0,
+    "feature_cols": [
+      "distance_to_goal",
+      "angle_to_goal"
+    ],
+    "evaluation": "fit on full sample (no holdout)",
+    "n_train": 66,
+    "n_test": 0,
+    "scaled": true,
+    "coefficients": {
+      "distance_to_goal": -0.371812,
+      "angle_to_goal": 0.589275
+    },
+    "intercept": -2.1467440373393565
+  },
+  "comparison": {
+    "n_shots": 66,
+    "prediction_correlation": 0.9992976244059519,
+    "spearman_correlation": 0.9993737477127382,
+    "mean_abs_difference": 0.011943967785054107,
+    "max_abs_difference": 0.09192294837851511,
+    "mean_basic_xg": 0.13630744270686154,
+    "mean_enhanced_xg": 0.13631190800242918,
+    "n_goals": 9,
+    "observed_goal_rate": 0.13636363636363635,
+    "performance_metrics_withheld": "Log-loss and AUC were not computed: the sample contains 9 goals, below the 20 this project requires before reporting a predictive-performance comparison. With this few positive cases the difference between two models' scores is dominated by which individual shots happened to go in, so any such number would invite a conclusion the data cannot support. The shot-by-shot disagreements from find_biggest_disagreements() are the usable output here.",
+    "bootstrap_mean_abs_difference": {
+      "mean_abs_difference": 0.011943967785054107,
+      "ci_low": 0.010169649328087203,
+      "ci_high": 0.04470446095482508,
+      "n_bootstrap": 400,
+      "n_failed_draws": 0
+    }
+  }
+}

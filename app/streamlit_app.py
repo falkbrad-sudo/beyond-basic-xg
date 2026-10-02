@@ -465,6 +465,13 @@ def main() -> None:
         "explains how.",
         icon="ℹ️",
     )
+    st.caption(
+        "Data: [StatsBomb open data](https://github.com/statsbomb/open-data) "
+        "(2023 NWSL) and [Metrica Sports sample data]"
+        "(https://github.com/metrica-sports/sample-data). Source code: "
+        "[github.com/falkbrad-sudo/beyond-basic-xg]"
+        "(https://github.com/falkbrad-sudo/beyond-basic-xg)."
+    )
 
     tab_compare, tab_validation, tab_context, tab_summary = st.tabs(
         [

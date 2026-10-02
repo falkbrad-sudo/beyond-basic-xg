@@ -1,0 +1,33 @@
+{
+  "fit_diagnostics": {
+    "n_shots": 3490,
+    "n_goals": 299,
+    "n_dropped_missing": 0,
+    "feature_cols": [
+      "distance_to_goal",
+      "angle_to_goal"
+    ],
+    "evaluation": "train/test split",
+    "n_train": 2792,
+    "n_test": 698,
+    "scaled": false,
+    "coefficients": {
+      "distance_to_goal": -0.083775,
+      "angle_to_goal": 1.057269
+    },
+    "intercept": -1.8490342821848327,
+    "test_auc": 0.7160527690700105,
+    "test_log_loss": 0.2684195790144128
+  },
+  "validation": {
+    "n_shots": 3490,
+    "pearson_r": 0.6804314605883975,
+    "spearman_rho": 0.7790070137309342,
+    "mean_abs_difference": 0.043617087755464086,
+    "mean_own_xg": 0.08486485565148562,
+    "mean_statsbomb_xg": 0.09410160105369628,
+    "observed_goal_rate": 0.08567335243553009,
+    "own_auc": 0.7214542573228007,
+    "statsbomb_auc": 0.7884282613412094
+  }
+}

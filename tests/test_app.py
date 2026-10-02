@@ -5,8 +5,8 @@ process and surfaces any exception it raises. An HTTP 200 from the server
 proves only that the port is open. The script body does not run until a
 session connects, so a broken app serves 200 happily. These run it.
 
-Marked integration because the app reads the pipeline's outputs from
-data/processed/.
+These run in the regular suite (and in CI): the app reads only the small
+committed snapshot in data/processed/, so no downloaded data is needed.
 """
 from pathlib import Path
 
@@ -29,12 +29,10 @@ def app():
     return runner
 
 
-@pytest.mark.integration
 def test_app_runs_without_exceptions(app):
     assert not app.exception, [str(e) for e in app.exception]
 
 
-@pytest.mark.integration
 def test_app_has_the_four_tabs(app):
     labels = [t.label for t in app.tabs]
     assert len(labels) == 4, labels
@@ -42,7 +40,6 @@ def test_app_has_the_four_tabs(app):
     assert any("Defender context" in label for label in labels)
 
 
-@pytest.mark.integration
 def test_app_shows_the_public_data_disclaimer(app):
     # METHODOLOGY.md principles #1 and #2: the app must not imply club data or a
     # validated result. If this warning ever disappears, that is a problem.
@@ -51,20 +48,17 @@ def test_app_shows_the_public_data_disclaimer(app):
     assert "not a" in warnings.lower()
 
 
-@pytest.mark.integration
 def test_shot_selector_is_populated(app):
     assert app.selectbox, "no shot selector rendered"
     assert len(app.selectbox[0].options) > 10
 
 
-@pytest.mark.integration
 def test_selecting_a_different_shot_does_not_break(app):
     runner = AppTest.from_file(APP, default_timeout=TIMEOUT_S).run()
     runner.selectbox[0].select_index(3).run()
     assert not runner.exception, [str(e) for e in runner.exception]
 
 
-@pytest.mark.integration
 def test_switching_the_control_model_does_not_break():
     runner = AppTest.from_file(APP, default_timeout=TIMEOUT_S).run()
     assert runner.radio, "no control-model toggle rendered"
@@ -72,7 +66,6 @@ def test_switching_the_control_model_does_not_break():
     assert not runner.exception, [str(e) for e in runner.exception]
 
 
-@pytest.mark.integration
 def test_summary_tab_reports_both_sample_sizes():
     """Both claims must be visible and distinguishable in the app.
 
@@ -87,7 +80,6 @@ def test_summary_tab_reports_both_sample_sizes():
     assert "299 goals" in body
 
 
-@pytest.mark.integration
 def test_app_does_not_claim_parity_with_statsbomb():
     """METHODOLOGY.md principle #2: no overclaiming. The app must keep saying what it is not."""
     runner = AppTest.from_file(APP, default_timeout=TIMEOUT_S).run()
@@ -95,7 +87,6 @@ def test_app_does_not_claim_parity_with_statsbomb():
     assert "do not match statsbomb" in body or "not a validated" in body
 
 
-@pytest.mark.integration
 def test_app_script_runs_standalone_from_an_unrelated_directory():
     """Catches the two bugs AppTest cannot see.
 
@@ -130,7 +121,6 @@ def test_app_script_runs_standalone_from_an_unrelated_directory():
     assert "Traceback" not in output, output[-2000:]
 
 
-@pytest.mark.integration
 def test_app_uses_no_removed_streamlit_apis():
     """`use_container_width` was slated for removal after 2025-12-31."""
     source = Path(APP).read_text()

@@ -57,6 +57,9 @@ logger = logging.getLogger(__name__)
 # three games exceeds it.
 MAX_SHOOTER_POSITION_ERROR_M = 3.0
 
+# Columns kept out of every output file that is committed to the repo.
+PUBLISHED_NAME_COLUMNS = ["player", "team"]
+
 
 def load_metrica_shots(cfg: dict) -> pd.DataFrame:
     """All Metrica shots, in the attacking frame, with geometry features.
@@ -182,7 +185,13 @@ def _save_validation_results(
     out_dir = resolve_path(cfg["paths"]["data_processed"])
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    shots.to_parquet(out_dir / "statsbomb_shots_with_geometry.parquet", index=False)
+    # Player and team names are dropped from this file because it is
+    # committed as part of the app snapshot, and nothing downstream reads
+    # them. Dropping them here, rather than only in the published copy,
+    # means a re-run of the pipeline cannot put them back.
+    shots.drop(columns=PUBLISHED_NAME_COLUMNS, errors="ignore").to_parquet(
+        out_dir / "statsbomb_shots_with_geometry.parquet", index=False
+    )
     results["calibration"].to_csv(out_dir / "basic_model_calibration.csv", index=False)
     results["largest_disagreements"].to_csv(
         out_dir / "basic_model_largest_disagreements.csv", index=False

@@ -8,6 +8,19 @@ data/external/*
 !data/external/.gitkeep
 data/processed/*
 !data/processed/.gitkeep
+# The ten small pipeline outputs the Streamlit app reads (about 400KB) are
+# committed, so the app runs on a fresh clone or a cloud deploy without the
+# 6GB download. Everything else the pipeline writes stays local.
+!data/processed/basic_model_calibration.csv
+!data/processed/basic_model_validation.json
+!data/processed/metrica_coefficient_intervals.csv
+!data/processed/metrica_comparison_summary.json
+!data/processed/metrica_shot_frames.parquet
+!data/processed/metrica_shots_compared.parquet
+!data/processed/statsbomb_context_intervals.csv
+!data/processed/statsbomb_context_summary.json
+!data/processed/statsbomb_power_analysis.csv
+!data/processed/statsbomb_shots_with_geometry.parquet
 data/raw/*
 !data/raw/.gitkeep
 
