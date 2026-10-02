@@ -1,0 +1,40 @@
+# Data: never commit downloaded datasets, even public ones (repo size and
+# licensing). The clone is about 6GB; scripts/download_data.sh fetches it.
+# Ignore the CONTENTS rather than the directories themselves, so the
+# .gitkeep files survive and the layout is preserved on a fresh clone. A
+# negation like `!data/**/.gitkeep` cannot work under an ignored directory,
+# because git never descends into one to find the exception.
+data/external/*
+!data/external/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/raw/*
+!data/raw/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Local editor and assistant config. Machine-specific, not part of the
+# project.
+.claude/
+.mcp.json
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Streamlit
+.streamlit/secrets.toml

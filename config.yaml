@@ -1,0 +1,32 @@
+# Project configuration. Loaded by src/config.py.
+
+paths:
+  data_external: "data/external"
+  data_processed: "data/processed"
+  metrica_dir: "data/external/metrica"
+  statsbomb_dir: "data/external/statsbomb"
+
+statsbomb:
+  competition_id: 49   # NWSL
+  season_id: 107        # 2023 season. Verified against competitions.json
+                        # by statsbomb_loader.verify_season_available().
+  # Used for baseline validation and for the defender-context model built
+  # from shot freeze frames. Not used for pitch control, which needs
+  # continuous tracking (METHODOLOGY.md principle #3).
+
+metrica:
+  game_ids: [1, 2, 3]
+  # The only source for pitch-control features. The 3 games give a small
+  # sample (66 usable shots, 9 goals), so see METHODOLOGY.md principle #2 on
+  # not overclaiming statistical power from it.
+
+pitch_control:
+  # Parameters for Spearman-style pitch control, if implemented at that
+  # level of detail rather than simple Voronoi. See
+  # src/features/pitch_control_at_shot.py for where these get used.
+  reaction_time_s: 0.7
+  max_player_speed_mps: 5.0
+
+model:
+  test_size: 0.2
+  random_state: 42
