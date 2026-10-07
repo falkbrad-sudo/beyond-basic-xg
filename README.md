@@ -1,6 +1,7 @@
 # Beyond Basic xG: A Pitch-Control-Informed Shot Quality Model
 
 **Does a shot's quality depend on more than distance and angle? This project uses player-tracking and freeze-frame data to test whether defensive pressure and space at the moment of a shot change how good a chance actually was.**
+(reports/figures/06_pitch_control_at_shot.png)
 
 Everything here is built on public data. Two of the samples are small, so each result is stated together with what its sample can and cannot support. See [METHODOLOGY.md](METHODOLOGY.md) for the principles behind that.
 
